@@ -40,7 +40,7 @@ class Food(
 class Fruit(
   val name: String,
   var price: String,
-  var origin: String
+  var origin: String,
   val stone: Boolean
 ) {
   fun hasStone() {
