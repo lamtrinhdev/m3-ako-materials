@@ -66,8 +66,8 @@ fun main() {
   println(tomato.label()) // Tomato of US. Price: 1.0
   println(tomato2.label()) // Fruit Tomato of US. Price: 1.0
 
-  val peach = Fruit("Peach", "2.0", "Chilie", true)
-  println(peach.label()) // Stoned Fruit Peach of Chilie. Price: 2.0
+  val peach = Fruit("Peach", "2.0", "Chile", true)
+  println(peach.label()) // Stoned Fruit Peach of Chile. Price: 2.0
 
 }
 

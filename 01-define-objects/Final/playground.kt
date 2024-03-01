@@ -57,7 +57,7 @@ fun main() {
   println(fridgeLeader.title) // > Supreme Tomato
 }
 
-// Object Identity
+// Class Instance Identity
 import java.util.*
 class Food(val name: String) {
   val title

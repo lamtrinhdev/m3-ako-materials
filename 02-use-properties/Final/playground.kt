@@ -66,6 +66,9 @@ fun main() {
   val betterFood = BetterFood("Tomato", "4.0")
   // reassign kind
   betterFood.kind = "Fruit"
+
+  // create BetterFood which is Fruit
+  val betterFood2 = BetterFood("Tomato", "4.0", "Fruit")
 }
 
 // Custom accessors
@@ -75,22 +78,27 @@ class Food(
   var price: String,
   var origin: String) {
 
+  // 1
   val label: String
     get() {
-      if( origin == "US") {
-        return "Local $name. Price: \$$price"
+      // 2
+      val result = if( origin == "US") {
+        "Local $name. Price: \$$price"
       } else {
-        return "$origin $name. Price: $price"
+        "$origin $name. Price: $price"
       }
+      // 3
+      return result
     }
   // custom setter
+  //1
   var country: String
+    // 2
     get() = "Country of origin: $origin"
-
+    // 3
     set(value) {
       origin = value
-    }
-  // companion object property
+    }  // companion object property
   companion object {
     @JvmStatic val maxDiscount = 0.3
   }
@@ -102,9 +110,9 @@ fun main() {
   tomato.origin = "UK"
   println(tomato.label) // UK Tomato. Price: 2.0
 
-  tomato.country = "Chilie"
-  println(tomato.label) // Chilie Tomato. Price: 2.0
-  println(tomato.country) // Country of origin: Chilie
+  tomato.country = "Chile"
+  println(tomato.label) // Chile Tomato. Price: 2.0
+  println(tomato.country) // Country of origin: Chile
 
   cucumber = Food("Cucumber", "1.0", "US")
 
@@ -114,3 +122,34 @@ fun main() {
   //println(tomato.maxDiscount)
   println(Food.maxDiscount) // 0.3
 }
+
+// lateinit
+class Shopkeeper
+
+class Shop {
+  lateinit var keeper: Shopkeeper
+}
+
+fun main() {
+  val shop = Shop()
+// ... shop has no shopkeeper, need to hire one!
+
+  println(shop.keeper)
+// Error: kotlin.UninitializedPropertyAccessException:
+// lateinit property keeper has not been initialized
+
+// ... hired someone
+  shop.keeper = Shopkeeper()
+  println(shop.keeper) // no error
+}
+
+// extension properties
+class Food(val name: String, val price: String)
+
+fun main() {
+  val Food.newPrice: Double
+    get() = 0.7 * price
+  val pear = Food("Pear", 10)
+  println(pear.newPrice) // 7.0
+}
+
