@@ -33,8 +33,11 @@
  */
 class Food {
   val name: String
-  var price: String = "1.0"
+  var price: String = "1.0".also {
+    println("Setting the price to $it")
+  }
   var origin: String = "US"
+
   constructor(name: String) {
     this.name = name
   }
@@ -70,6 +73,7 @@ fun main() {
 
     // init block
     tomato = Food("Tomato", "2.0")
+    // Setting the price to 1.0
     // Init block in action
     // Secondary constructor used
     println(tomato.name) // Tomato
