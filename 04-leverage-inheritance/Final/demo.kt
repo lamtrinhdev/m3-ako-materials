@@ -31,24 +31,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-// Food and Fruit example
-class Food(
-  val name: String,
-  var price: String,
-  var origin: String)
 
-class Fruit(
-  val name: String,
-  var price: String,
-  var origin: String,
-  val stone: Boolean
-) {
-  fun hasStone() {
-    return stone
-  }
-}
-
-// Fruit is a Food example
 open class Food(
   val name: String,
   var price: String,
@@ -69,61 +52,11 @@ class Fruit(
     return stone
   }
 }
-fun main() {
-  val tomato = Food("Tomato", "1.0", "US")
-  val tomato2 = Fruit("Tomato", "1.0", "US")
-
-  println(tomato.label()) //Tomato of US. Price: 1.0
-  println(tomato2.label()) //Tomato of US. Price: 1.0
-
-  // Food has no knowledge about stone
-  // Error: Unresolved reference: hasStone
-  // println(tomato.hasStone())
-  println(tomato2.hasStone()) // false
-}
-
-// Polymorphism
-open class Food(
-  val name: String,
-  var price: String,
-  var origin: String) {
-
-  fun label(): String {
-    return "$name of $origin. Price: $price"
-  }
-}
-
-class Fruit(
-  name: String,
-  price: String,
-  origin: String,
-  val stone: Boolean = false
-): Food(name, price, origin) {
-  fun hasStone(): Boolean {
-    return stone
-  }
-}
-class Veg(
-  name: String,
-  price: String,
-  origin: String,
-  val rooted: Boolean = false
-): Food(name, price, origin) {
-  fun isRooted(): Boolean {
-    return rooted
-  }
-}
-
-fun foodLabel(food: Food) : String {
-  return "Label: ${food.label()}"
-}
 
 fun main() {
-  val tomato = Fruit("Tomato", "1.0", "US")
-  val carrot = Veg("The Carrot", "2.0", "Canada", true)
-
-  println(foodLabel(tomato)) // Label: Tomato of US. Price: 1.0
-  println(foodLabel(carrot)) // Label: The Carrot of Canada. Price: 2.0
-
+  val otherTomato: Food = Fruit("Tomato", "3.0", "UK")
+  println(otherTomato is Fruit) // true
+  println(otherTomato is Food) // true
+  println((otherTomato as Fruit).hasStone) // false
+  println((otherTomato as? Fruit)?.hasStone) // false
 }
-
