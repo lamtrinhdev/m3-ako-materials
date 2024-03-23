@@ -73,40 +73,26 @@ fun main() {
 
 
 // Override constructor
-open class Food(
-  open val name: String,
-  var price: String,
-  var origin: String
-) {
 
-  open fun label(): String {
-    return "$name of $origin. Price: $price"
-  }
-}
+open class Team(open val name: String)
 
-class Fruit(
-  override val name: String,
-  price: String,
-  origin: String,
-  val stone: Boolean = false
-) : Food("Beetroot", price, origin) {
-  fun hasStone(): Boolean {
-    return stone
-  }
+class LocalTeam(nameParam: String, val isLocal: Boolean): Team(nameParam) {
+  // Override the name property during initialization
+  override val name = nameParam.toUpperCase()
 
-  fun secretname(): String {
+  fun secretName(): String {
     return super.name
   }
 }
 
 fun main() {
-  val tomato = Fruit("Tomato", "1.0", "US")
-
-  println(tomato.label()) // Tomato of US. Price: 1.0
-  println(tomato.secretname()) // Beetroot
+  val team=LocalTeam("Tigers", false)
+  println(team.name) // TIGERS
+  println(team.secretName()) // Tigers
 }
 
-// Overriding equals
+
+// Overriding equals and hashcode
 open class Food(
   val name: String,
   var price: String,
@@ -122,6 +108,11 @@ open class Food(
     if (other !is Food) return false
     return name == other.name
   }
+
+  override fun hashCode(): Int {
+    return 1 + price.hashCode()
+  }
+
 }
 
 class Fruit(
@@ -150,31 +141,17 @@ fun main() {
   println(stonedtomato.equals(tomato)) // false
 }
 
-// overriding hashcode
-open class Food(
-  val name: String,
-  val price: String
-) {
-  override fun hashCode(): Int {
-    return 1 + price.hashCode()
-  }
-
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other !is Food) return false
-    return name == other.name
-  }
-}
-
+// overriding
 fun main() {
   val tomato = Food("Tomato", "1.0")
   val cucumber = Food("Tomato", "2.0")
-
+  //1
   val foods = mutableSetOf<Food>()
   foods.add(tomato)
-
+  //2
   println(cucumber in foods) // false
+  //3
   println(cucumber == foods.first()) // true
-
-  println(tomato == cucumber) // false
+  //4
+  println(tomato == cucumber) // true
 }
