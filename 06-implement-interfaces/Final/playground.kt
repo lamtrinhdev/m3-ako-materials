@@ -33,7 +33,7 @@
  */
 
 interface Edible {
-  fun isItReallyEdible(): Boolean
+  val isItReallyEdible: Boolean
   fun taste(): String
 
   fun consumer(): String {
@@ -42,9 +42,7 @@ interface Edible {
 }
 
 class Fruit : Edible {
-  override fun isItReallyEdible(): Boolean {
-    return true
-  }
+  override val isItReallyEdible = true
 
   override fun taste(): String {
     return "Sweet"
@@ -53,12 +51,10 @@ class Fruit : Edible {
 }
 
 class Mushroom : Edible {
-  override fun isItReallyEdible(): Boolean {
-    return false
-  }
+  override val isItReallyEdible = false
 
   override fun taste(): String {
-    return "delicious"
+    return "Delicious"
   }
 
   override fun consumer(): String {
@@ -67,9 +63,9 @@ class Mushroom : Edible {
 }
 
 fun main() {
-  val items = mutableListOf<Edible>(Fruit(), Mushroom())
+  val items = listOf<Edible>(Fruit(), Mushroom())
   items.forEach { item ->
-    println("${item.javaClass.simpleName} really edible: ${item.isItReallyEdible()}, taste: ${item.taste()}, consumed by ${item.consumer()}")
+    println("${item.javaClass.simpleName} really edible: ${item.isItReallyEdible}, taste: ${item.taste()}, consumed by ${item.consumer()}")
   }
 }
 
@@ -101,8 +97,12 @@ class Garlic : Edible {
 
 fun main() {
   // Error: Type mismatch: inferred type is Garlic but Sweet was expected
-  // val sweetItems = mutableListOf<Sweet>(Fruit("Peach"), Garlic())
-  val items = mutableListOf<Edible>(Fruit("Peach"), Garlic())
+  //  val sweetItems = listOf<Sweet>(Fruit("Peach"), Garlic())
+  //  sweetItems.forEach { item ->
+  //    println( "${item.javaClass.simpleName} sour: ${item.andSour()}")
+  //  }
+
+  val items = listOf<Edible>(Fruit("Peach"), Garlic())
   items.forEach { item ->
     println( "${item.javaClass.simpleName} taste: ${item.taste()}")
   }
@@ -110,7 +110,7 @@ fun main() {
   // Garlic taste: delicious
 
   // Same, but for Sweet
-  //  val sweetItems = mutableListOf<Sweet>(Fruit("Peach"), Fruit("Tomato", false))
+  //  val sweetItems = listOf<Sweet>(Fruit("Peach"), Fruit("Tomato", false))
 //  sweetItems.forEach { item ->
 //    // Error:
 //    // Unresolved reference: name
@@ -119,7 +119,7 @@ fun main() {
 //  }
 //
 // Same, but name is not available
-  val sweetItems = mutableListOf<Sweet>(Fruit("Peach"), Fruit("Tomato", true))
+  val sweetItems = listOf<Sweet>(Fruit("Peach"), Fruit("Tomato", true))
   sweetItems.forEach { item ->
     println("${item.javaClass.simpleName} is Sweet. Sour? ${item.andSour()}")
   }
@@ -127,7 +127,7 @@ fun main() {
 //Fruit is Sweet. Sour? Maybe
 
 // Same, but for Fruit
-  val fruitItems = mutableListOf<Fruit>(Fruit("Peach"), Fruit("Tomato", true))
+  val fruitItems = listOf<Fruit>(Fruit("Peach"), Fruit("Tomato", true))
   fruitItems.forEach { item ->
     println( "${item.name} taste: ${item.taste()}. Sour? ${item.andSour()}")
   }
