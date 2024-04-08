@@ -59,24 +59,24 @@ object Box {
 }
 
 fun main() {
-    // primary constructor
-    var tomato = Food("Tomato")
-    println(tomato.name) // Tomato
-    println(tomato.price) // 1.0
-    println(tomato.origin) // US
+  // one-argument secondary constructor
+  var tomato = Food("Tomato")
+  println(tomato.name) // Tomato
+  println(tomato.price) // 1.0
+  println(tomato.origin) // US
 
-    // secondary constructor
-    tomato = Food("Tomato", "2.0") // Secondary constructor used
-    println(tomato.name) // Tomato
-    println(tomato.price) // 2.0
-    println(tomato.origin) // US
+  // two-argument secondary constructor
+  val tomato2 = Food("Tomato", "2.0") // Secondary constructor used
+  println(tomato2.name) // Tomato
+  println(tomato2.price) // 2.0
+  println(tomato2.origin) // US
 
-    // init block
-    tomato = Food("Tomato", "2.0")
-    // Setting the price to 1.0
-    // Init block in action
-    // Secondary constructor used
-    println(tomato.name) // Tomato
-    println(tomato.price) // 2.0
-    println(tomato.origin) // UK
+  // init block
+  tomato = Food("Tomato", "2.0")
+  // Setting the price to 1.0
+  // Init block in action
+  // Secondary constructor used
+  println(tomato.name) // Tomato
+  println(tomato.price) // 2.0
+  println(tomato.origin) // UK
 }

@@ -70,6 +70,38 @@ fun main() {
   println(peach.label()) // Stoned Fruit Peach of Chile. Price: 2.0
 
 }
+// Benefits
+
+//Flexibility and Extensibility
+open class Fruit {
+  open fun describeColor() {
+    println("Fruits can be of various colors.")
+  }
+}
+
+class Peach : Fruit() {
+  override fun describeColor() {
+    println("A peach is usually pinkish or yellowish.")
+  }
+}
+
+class Plum : Fruit() {
+  override fun describeColor() {
+    println("A plum is usually purple or reddish.")
+  }
+}
+
+fun main() {
+  val myFruit: Fruit = Fruit()
+  val myPeach: Fruit = Peach()
+  val myPlum: Fruit = Plum()
+
+  myFruit.describeColor() // Fruits can be of various colors.
+  myPeach.describeColor() // A peach is usually pinkish or yellowish.
+  myPlum.describeColor() // A plum is usually purple or reddish.
+}
+
+// Polymorphism
 
 
 // Override constructor
