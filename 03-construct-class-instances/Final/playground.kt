@@ -31,8 +31,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-class Food {
-  val name: String
+class Food(val name: String) {
   var price: String = "1.0".also {
     println("Setting the price to $it")
   }
@@ -45,6 +44,7 @@ class Food {
   constructor(name: String, price: String) : this(name) {
     println("Secondary constructor used")
     this.price = price
+    this.name = name
   }
 
   init {

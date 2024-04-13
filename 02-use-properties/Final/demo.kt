@@ -32,18 +32,25 @@
  * THE SOFTWARE.
  */
 
-class Circle(var radius: Double = 0.0) {
-  val pi: Double by lazy {
-    ((4.0 * Math.atan(1.0 / 5.0)) - Math.atan(1.0 / 239.0)) * 4.0
+class Rectangle(val length: Double, val width: Double) {
+  val area: Double by lazy {
+    (length * width)
+      .also {
+        println("Calculating area")
+      }
   }
-  val circumference: Double
-    get() = pi * radius * 2
+
+  val perimeter: Double by lazy {
+    2 * (length + width)
+      .also {
+        println("Calculating perimeter")
+      }
+  }
 }
-
 fun main() {
-  val circle = Circle(5.0) // got a circle, pi has not been run
-
-  val circumference = circle.circumference
-  println(circumference) // 31.42
-// also, pi now has a value
+  val rectangle = Rectangle(5.0, 3.0)
+  println("Area: ${rectangle.area}") // Area: 15.0
+  println("Area: ${rectangle.area}") // Area: 15.0
+  println("Perimeter: ${rectangle.perimeter}") //  Perimeter: 16.0
+  println("Perimeter: ${rectangle.perimeter}") //  Perimeter: 16.0
 }
